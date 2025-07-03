@@ -1,0 +1,1819 @@
+
+== GeoLocation Profile Specification
+
+// Settings:
+:doctype: inline
+:reproducible:
+:icons: font
+:sectnums:
+:sectnumlevels: 4
+:xrefstyle: short
+
+Profile namespace: http://www.ucaiug.org/gmdm_location#
+
+.GeoLocation Profile
+plantuml::./Profiles/GeoLocation.rdfs-t2b.puml[format=svg, align=center]
+
+
+=== Concrete Classes
+
+[[GeoLocation-ACLineSegment]]
+==== (Description) ACLineSegment
+
+Inheritance path = <<GeoLocation-Conductor,Conductor>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-ACLineSegment,ACLineSegment>>.
+endif::GeoLocation-description-profile[]
+
+:ACLineSegment:
+A line segment is a conductor or combination of conductors, with consistent electrical characteristics along its length, building a single electrical system that carries alternating current between two points in the power system.
+
+The BaseVoltage at the two ends of a line segment shall have the same BaseVoltage.nominalVoltage. However, boundary lines may have slightly different BaseVoltage.nominalVoltages and variation is allowed. Larger voltage difference in general requires use of an equivalent branch.
+
+Line segment impedances can be either directly described in electrical terms or physical line detail can be provided from which impedances can be calculated.
+
+{lt}b{gt}Directly described impedances{lt}/b{gt}
+
+For symmetrical, transposed three phase line segments, it is sufficient to use attributes of the line segment, which describe impedances and admittances for the entire length of the line segment. Additionally, line segment impedances can be computed by using line segment length and associated per length impedances.
+
+Unbalanced modeling of impedances is supported by the per length phase impedance matrix (PerLengthPhaseImpedance) in conjunction with phase-to-sequence number mapping supplied by either ACLineSegmentPhase or WirePosition. The sequence numbers are referenced by the row and column attributes of the per length phase impedance matrix. This method enables single-phase and two-phase line segments, and transpositions of phases, to be described using the same per length phase impedance matrix. The length of the line segment is used in the computation of total impedance values for the line segment.
+
+{lt}b{gt}Line detail characteristics{lt}/b{gt}
+
+There are three approaches to providing line detail and all use WireAssembly to supply line positions:
+
+{lt}ul{gt}
+
+{lt}li{gt}Option 1 - WireAssembly supplies only line positions. ACLineSegmentPhase points to wire type and intraphase spacing and supplies the phase-to-sequence number mapping.{lt}/li{gt}
+
+{lt}li{gt}Option 2 - WireAssembly supplies line position and, for each position, also supplies wire type and intraphase spacing. ACLineSegmentPhase supplies the phase-to-sequence number mapping.{lt}/li{gt}
+
+{lt}li{gt}Option 3 - WireAssembly supplies line position and, for each position, also supplies wire type and intraphase spacing and phase. WireAssembly therefore supplies the phase-to-sequence number mapping and ACLineSegmentPhase is not needed.{lt}/li{gt}
+
+{lt}/ul{gt}
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ACLineSegment:
+
+[[GeoLocation-ACLineSegmentPhase]]
+==== (Description) ACLineSegmentPhase
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-ACLineSegmentPhase,ACLineSegmentPhase>>.
+endif::GeoLocation-description-profile[]
+
+:ACLineSegmentPhase:
+A line segment phase represents one phase (or optionally the neutral) of an alternating current line segment.
+
+Under most circumstances there is not a line segment phase for the neutral. However, if a wire assembly is being used and it does not specify phase, a line segment phase must exist for each position in the assembly (including the neutral).
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ACLineSegmentPhase:
+
+[[GeoLocation-AsynchronousMachine]]
+==== (Description) AsynchronousMachine
+
+Inheritance path = <<GeoLocation-RotatingMachine,RotatingMachine>> => <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-AsynchronousMachine,AsynchronousMachine>>.
+endif::GeoLocation-description-profile[]
+
+:AsynchronousMachine:
+A rotating machine whose shaft rotates asynchronously with the electrical field. Also known as an induction machine with no external connection to the rotor windings, e.g. squirrel-cage induction machine.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!AsynchronousMachine:
+
+[[GeoLocation-Breaker]]
+==== (Description) Breaker
+
+Inheritance path = <<GeoLocation-ProtectedSwitch,ProtectedSwitch>> => <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Breaker,Breaker>>.
+endif::GeoLocation-description-profile[]
+
+:Breaker:
+A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g. those of short circuit.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Breaker:
+
+[[GeoLocation-BusbarSection]]
+==== (Description) BusbarSection
+
+Inheritance path = <<GeoLocation-Connector,Connector>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-BusbarSection,BusbarSection>>.
+endif::GeoLocation-description-profile[]
+
+:BusbarSection:
+A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation. The BusbarSection class is intended to represent physical parts of bus bars no matter how that bus bar is constructed.
+
+Voltage measurements are typically obtained from voltage transformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!BusbarSection:
+
+[[GeoLocation-Disconnector]]
+==== (Description) Disconnector
+
+Inheritance path = <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Disconnector,Disconnector>>.
+endif::GeoLocation-description-profile[]
+
+:Disconnector:
+A mechanical switching device which provides, in the open position, an isolating distance in accordance with specified requirements.
+
+A disconnector is capable of opening and closing a circuit when either negligible current is broken or made, or when no significant change in the voltage across the terminals of each of the poles of the disconnector occurs. It is also capable of carrying currents under normal circuit conditions and carrying for a specified time currents under abnormal conditions such as those of short circuit.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Disconnector:
+
+[[GeoLocation-EnergyConsumer]]
+==== (Description) EnergyConsumer
+
+Inheritance path = <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-EnergyConsumer,EnergyConsumer>>.
+endif::GeoLocation-description-profile[]
+
+:EnergyConsumer:
+Generic user of energy - a point of consumption on the power system model.
+
+EnergyConsumer.pfixed, .qfixed, .pfixedPct and .qfixedPct have meaning only if there is no LoadResponseCharacteristic associated with EnergyConsumer or if LoadResponseCharacteristic.exponentModel is set to False.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!EnergyConsumer:
+
+[[GeoLocation-EnergyConsumerPhase]]
+==== (Description) EnergyConsumerPhase
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-EnergyConsumerPhase,EnergyConsumerPhase>>.
+endif::GeoLocation-description-profile[]
+
+:EnergyConsumerPhase:
+A single phase of an energy consumer.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!EnergyConsumerPhase:
+
+[[GeoLocation-EnergySource]]
+==== (Description) EnergySource
+
+Inheritance path = <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-EnergySource,EnergySource>>.
+endif::GeoLocation-description-profile[]
+
+:EnergySource:
+A generic equivalent for an energy supplier on a transmission or distribution voltage level.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!EnergySource:
+
+[[GeoLocation-Feeder]]
+==== (Description) Feeder
+
+Inheritance path = <<GeoLocation-EquipmentContainer,EquipmentContainer>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Feeder,Feeder>>.
+endif::GeoLocation-description-profile[]
+
+:Feeder:
+A collection of equipment for organizational purposes, used for grouping distribution resources.
+
+The organization a feeder does not necessarily reflect connectivity or current operation state.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Feeder:
+
+[[GeoLocation-Fuse]]
+==== (Description) Fuse
+
+Inheritance path = <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Fuse,Fuse>>.
+endif::GeoLocation-description-profile[]
+
+:Fuse:
+An overcurrent protective device with a circuit opening fusible part that is heated and severed by the passage of overcurrent through it. A fuse is considered a switching device because it breaks current.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Fuse:
+
+[[GeoLocation-Line]]
+==== (Description) Line
+
+Inheritance path = <<GeoLocation-EquipmentContainer,EquipmentContainer>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Line,Line>>.
+endif::GeoLocation-description-profile[]
+
+:Line:
+Contains equipment beyond a substation belonging to a power transmission line.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Line:
+
+[[GeoLocation-LinearShuntCompensator]]
+==== (Description) LinearShuntCompensator
+
+Inheritance path = <<GeoLocation-ShuntCompensator,ShuntCompensator>> => <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-LinearShuntCompensator,LinearShuntCompensator>>.
+endif::GeoLocation-description-profile[]
+
+:LinearShuntCompensator:
+A linear shunt compensator has banks or sections with equal admittance values.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!LinearShuntCompensator:
+
+[[GeoLocation-LinearShuntCompensatorPhase]]
+==== (Description) LinearShuntCompensatorPhase
+
+Inheritance path = <<GeoLocation-ShuntCompensatorPhase,ShuntCompensatorPhase>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-LinearShuntCompensatorPhase,LinearShuntCompensatorPhase>>.
+endif::GeoLocation-description-profile[]
+
+:LinearShuntCompensatorPhase:
+A per phase linear shunt compensator has banks or sections with equal admittance values.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!LinearShuntCompensatorPhase:
+
+[[GeoLocation-LoadBreakSwitch]]
+==== (Description) LoadBreakSwitch
+
+Inheritance path = <<GeoLocation-ProtectedSwitch,ProtectedSwitch>> => <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-LoadBreakSwitch,LoadBreakSwitch>>.
+endif::GeoLocation-description-profile[]
+
+:LoadBreakSwitch:
+A mechanical switching device capable of making, carrying, and breaking currents under normal operating conditions.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!LoadBreakSwitch:
+
+[[GeoLocation-PositionPoint]]
+==== PositionPoint
+
+Inheritance path = <<GeoLocation-GeometricElement,GeometricElement>> => <<GeoLocation-Identity,Identity>>
+
+:PositionPoint:
+Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to describe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|[extension]#sequenceNumber#
+|0..1
+|<<GeoLocation-Integer,Integer>>
+|
+|xPosition
+|1..1
+|<<GeoLocation-String,String>>
+|
+X axis position.
+
+|yPosition
+|1..1
+|<<GeoLocation-String,String>>
+|
+Y axis position.
+
+|zPosition
+|0..1
+|<<GeoLocation-String,String>>
+|
+(if applicable) Z axis position.
+
+|[extension]#Location#
+|1..1
+|<<GeoLocation-Location,Location>>
+|
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!PositionPoint:
+
+[[GeoLocation-PowerElectronicsConnection]]
+==== (Description) PowerElectronicsConnection
+
+Inheritance path = <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-PowerElectronicsConnection,PowerElectronicsConnection>>.
+endif::GeoLocation-description-profile[]
+
+:PowerElectronicsConnection:
+A connection to the AC network for energy production or consumption that uses power electronics rather than rotating machines.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!PowerElectronicsConnection:
+
+[[GeoLocation-PowerElectronicsConnectionPhase]]
+==== (Description) PowerElectronicsConnectionPhase
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-PowerElectronicsConnectionPhase,PowerElectronicsConnectionPhase>>.
+endif::GeoLocation-description-profile[]
+
+:PowerElectronicsConnectionPhase:
+A single phase of a power electronics connection.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!PowerElectronicsConnectionPhase:
+
+[[GeoLocation-PowerTransformer]]
+==== (Description) PowerTransformer
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-PowerTransformer,PowerTransformer>>.
+endif::GeoLocation-description-profile[]
+
+:PowerTransformer:
+An electrical device consisting of two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits. Transformers can be used to control voltage and phase shift (active power flow).
+
+A power transformer may be composed of separate transformer tanks that need not be identical.
+
+A power transformer can be modelled with or without tanks and is intended for use in both balanced and unbalanced representations. A power transformer typically has two terminals, but may have one (grounding), three or more terminals.
+
+The inherited association ConductingEquipment.BaseVoltage should not be used. The association from TransformerEnd to BaseVoltage should be used instead.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!PowerTransformer:
+
+[[GeoLocation-Recloser]]
+==== (Description) Recloser
+
+Inheritance path = <<GeoLocation-ProtectedSwitch,ProtectedSwitch>> => <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Recloser,Recloser>>.
+endif::GeoLocation-description-profile[]
+
+:Recloser:
+Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Recloser:
+
+[[GeoLocation-Sectionaliser]]
+==== (Description) Sectionaliser
+
+Inheritance path = <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Sectionaliser,Sectionaliser>>.
+endif::GeoLocation-description-profile[]
+
+:Sectionaliser:
+Automatic switch that will lock open to isolate a faulted section. It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Sectionaliser:
+
+[[GeoLocation-SeriesCompensator]]
+==== (Description) SeriesCompensator
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-SeriesCompensator,SeriesCompensator>>.
+endif::GeoLocation-description-profile[]
+
+:SeriesCompensator:
+A Series Compensator is a series capacitor or reactor or an AC transmission line without charging susceptance. It is a two terminal device.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!SeriesCompensator:
+
+[[GeoLocation-Substation]]
+==== (Description) Substation
+
+Inheritance path = <<GeoLocation-EquipmentContainer,EquipmentContainer>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-Substation,Substation>>.
+endif::GeoLocation-description-profile[]
+
+:Substation:
+A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Substation:
+
+[[GeoLocation-SwitchPhase]]
+==== (Description) SwitchPhase
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-SwitchPhase,SwitchPhase>>.
+endif::GeoLocation-description-profile[]
+
+:SwitchPhase:
+Single phase of a multi-phase switch when its attributes might be different per phase.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!SwitchPhase:
+
+[[GeoLocation-SynchronousMachine]]
+==== (Description) SynchronousMachine
+
+Inheritance path = <<GeoLocation-RotatingMachine,RotatingMachine>> => <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-SynchronousMachine,SynchronousMachine>>.
+endif::GeoLocation-description-profile[]
+
+:SynchronousMachine:
+An electromechanical device that operates with shaft rotating synchronously with the network. It is a single machine operating either as a generator or synchronous condenser or pump.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!SynchronousMachine:
+
+[[GeoLocation-TransformerTank]]
+==== (Description) TransformerTank
+
+Inheritance path = <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+ifdef::GeoLocation-description-profile[]
+This class is tagged in this profile with the 'Description' tag. To refer to the full definition of this class as defined in the profile this one depends on visit <<{GeoLocation-description-profile}-TransformerTank,TransformerTank>>.
+endif::GeoLocation-description-profile[]
+
+:TransformerTank:
+An assembly of two or more coupled windings that transform electrical power between voltage levels. These windings are bound on a common core and placed in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!TransformerTank:
+
+
+=== Abstract Classes
+
+[[GeoLocation-ConductingEquipment]]
+==== ConductingEquipment
+
+Inheritance path = <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:ConductingEquipment:
+The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ConductingEquipment:
+
+[[GeoLocation-Conductor]]
+==== Conductor
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:Conductor:
+Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Conductor:
+
+[[GeoLocation-Connector]]
+==== Connector
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:Connector:
+A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation and are modelled with a single logical terminal.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Connector:
+
+[[GeoLocation-CoordinateSystem]]
+==== CoordinateSystem
+
+Inheritance path = <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:CoordinateSystem:
+Coordinate reference system.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!CoordinateSystem:
+
+[[GeoLocation-EnergyConnection]]
+==== EnergyConnection
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:EnergyConnection:
+A connection of energy generation or consumption on the power system model.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!EnergyConnection:
+
+[[GeoLocation-Equipment]]
+==== Equipment
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:Equipment:
+The parts of a power system that are physical devices, electronic or mechanical.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Equipment:
+
+[[GeoLocation-EquipmentContainer]]
+==== EquipmentContainer
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:EquipmentContainer:
+A modelling construct to provide a root class for containing equipment.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!EquipmentContainer:
+
+[[GeoLocation-GeometricElement]]
+==== GeometricElement
+
+Inheritance path = <<GeoLocation-Identity,Identity>>
+
+:GeometricElement:
+Exists solely as the parent of the separate geometry types (Point, Line, Circle, Polygon) in order to create an xsd Choice between the types.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!GeometricElement:
+
+[[GeoLocation-IdentifiedObject]]
+==== IdentifiedObject
+
+Inheritance path = <<GeoLocation-Identity,Identity>>
+
+:IdentifiedObject:
+This is a class that provides common identification for all classes needing identification and naming attributes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|
+Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in IETF RFC 4122, for the mRID. The use of UUID is strongly recommended.
+
+For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
+
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|
+The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.
+
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|
+The name is any free human readable and possibly non unique text naming the object.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!IdentifiedObject:
+
+[[GeoLocation-Identity]]
+==== Identity
+
+
+:Identity:
+This is a root class to provide common identification for all classes.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|
+A universally unique object identifier. Used to uniquely identify persistent objects between CIM messages.
+
+|===
+:!Identity:
+
+[[GeoLocation-Location]]
+==== Location
+
+Inheritance path = <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:Location:
+The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more position points (coordinates) in a given coordinate system.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|CoordinateSystem
+|0..1
+|<<GeoLocation-CoordinateSystem,CoordinateSystem>>
+|
+Coordinate system used to describe position points of this location.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Location:
+
+[[GeoLocation-PowerSystemResource]]
+==== PowerSystemResource
+
+Inheritance path = <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:PowerSystemResource:
+A power system resource (PSR) can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.
+
+
+*Native Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|
+Location of this power system resource.
+
+|===
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!PowerSystemResource:
+
+[[GeoLocation-ProtectedSwitch]]
+==== ProtectedSwitch
+
+Inheritance path = <<GeoLocation-Switch,Switch>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:ProtectedSwitch:
+A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ProtectedSwitch:
+
+[[GeoLocation-RegulatingCondEq]]
+==== RegulatingCondEq
+
+Inheritance path = <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:RegulatingCondEq:
+A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!RegulatingCondEq:
+
+[[GeoLocation-RotatingMachine]]
+==== RotatingMachine
+
+Inheritance path = <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:RotatingMachine:
+A rotating machine which may be used as a generator or motor.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!RotatingMachine:
+
+[[GeoLocation-ShuntCompensator]]
+==== ShuntCompensator
+
+Inheritance path = <<GeoLocation-RegulatingCondEq,RegulatingCondEq>> => <<GeoLocation-EnergyConnection,EnergyConnection>> => <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:ShuntCompensator:
+A shunt capacitor or reactor or switchable bank of shunt capacitors or reactors. A section of a shunt compensator is an individual capacitor or reactor. A negative value for bPerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device. Ground is implied.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ShuntCompensator:
+
+[[GeoLocation-ShuntCompensatorPhase]]
+==== ShuntCompensatorPhase
+
+Inheritance path = <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:ShuntCompensatorPhase:
+Single phase of a multi-phase shunt compensator when its attributes might be different per phase.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!ShuntCompensatorPhase:
+
+[[GeoLocation-Switch]]
+==== Switch
+
+Inheritance path = <<GeoLocation-ConductingEquipment,ConductingEquipment>> => <<GeoLocation-Equipment,Equipment>> => <<GeoLocation-PowerSystemResource,PowerSystemResource>> => <<GeoLocation-IdentifiedObject,IdentifiedObject>> => <<GeoLocation-Identity,Identity>>
+
+:Switch:
+A generic device designed to close, or open, or both, one or more electric circuits. All switches are two terminal devices including grounding switches. The ACDCTerminal.connected at the two sides of the switch shall not be considered for assessing switch connectivity, i.e. only Switch.open, .normalOpen and .locked are relevant.
+
+
+*Inherited Members*
+
+[%header,width="100%",cols="25%,^10%,20%,45%a"]
+|===
+|name |mult |type |description
+|Location
+|0..1
+|<<GeoLocation-Location,Location>>
+|see <<GeoLocation-PowerSystemResource,PowerSystemResource>>
+|mRID
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|description
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|name
+|0..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-IdentifiedObject,IdentifiedObject>>
+|identifier
+|1..1
+|<<GeoLocation-String,String>>
+|see <<GeoLocation-Identity,Identity>>
+|===
+:!Switch:
+
+
+=== Primitive Types
+
+[[GeoLocation-Integer]]
+==== Integer
+
+An integer number. The range is unspecified and not limited.http://langdale.com.au/2005/UML#primitive
+
+XSD type: integer
+
+[[GeoLocation-String]]
+==== String
+
+A string consisting of a sequence of characters. The character encoding is UTF-8. The string length is unspecified and unlimited.http://langdale.com.au/2005/UML#primitivehttp://langdale.com.au/2005/UML#profcim
+
+XSD type: string
+
+
