@@ -4,7 +4,7 @@ version = "0.0.1"
 description = "EPRI GMDM Modeling"
 authors = ["A. Anderson <19935503+AAndersn@users.noreply.github.com>"]
 packages = [
-    { include = "gmdm-python" }
+    { include = "gmdm_python" }
 ]
 readme = "README.md"
 
