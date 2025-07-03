@@ -243,6 +243,7 @@ DiagramObject.rotation=90 has the following meaning: The connection point of an 
       <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
       <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.</rdfs:comment>
       <rdfs:label xml:lang="en">DiagramObjectGluePoint</rdfs:label>
+      <rdfs:subClassOf rdf:resource="#Identity"/>
    </rdf:Description>
    <rdf:Description rdf:about="#DiagramObjectGluePoint.DiagramObjectPoints">
       <cims:AssociationUsed>Yes</cims:AssociationUsed>
@@ -260,6 +261,7 @@ DiagramObject.rotation=90 has the following meaning: The connection point of an 
       <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
       <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A point in a given space defined by 3 coordinates and associated to a diagram object.  The coordinates may be positive or negative as the origin does not have to be in the corner of a diagram.</rdfs:comment>
       <rdfs:label xml:lang="en">DiagramObjectPoint</rdfs:label>
+      <rdfs:subClassOf rdf:resource="#Identity"/>
    </rdf:Description>
    <rdf:Description rdf:about="#DiagramObjectPoint.DiagramObject">
       <cims:AssociationUsed>Yes</cims:AssociationUsed>
@@ -365,6 +367,7 @@ DiagramObject.rotation=90 has the following meaning: The connection point of an 
       <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
       <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This is a class that provides common identification for all classes needing identification and naming attributes.</rdfs:comment>
       <rdfs:label xml:lang="en">IdentifiedObject</rdfs:label>
+      <rdfs:subClassOf rdf:resource="#Identity"/>
    </rdf:Description>
    <rdf:Description rdf:about="#IdentifiedObject.description">
       <cims:dataType rdf:resource="#String"/>
@@ -393,6 +396,21 @@ For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is map
       <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The name is any free human readable and possibly non unique text naming the object.</rdfs:comment>
       <rdfs:domain rdf:resource="#IdentifiedObject"/>
       <rdfs:label xml:lang="en">name</rdfs:label>
+   </rdf:Description>
+   <rdf:Description rdf:about="#Identity">
+      <cims:belongsToCategory rdf:resource="#Package_Core"/>
+      <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+      <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This is a root class to provide common identification for all classes.</rdfs:comment>
+      <rdfs:label xml:lang="en">Identity</rdfs:label>
+   </rdf:Description>
+   <rdf:Description rdf:about="#Identity.identifier">
+      <cims:dataType rdf:resource="#String"/>
+      <cims:multiplicity rdf:resource="http://iec.ch/TC57/1999/rdf-schema-extensions-19990926#M:1..1"/>
+      <cims:stereotype rdf:resource="http://iec.ch/TC57/NonStandard/UML#attribute"/>
+      <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+      <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A universally unique object identifier. Used to uniquely identify persistent objects between CIM messages.</rdfs:comment>
+      <rdfs:domain rdf:resource="#Identity"/>
+      <rdfs:label xml:lang="en">identifier</rdfs:label>
    </rdf:Description>
    <rdf:Description rdf:about="#Integer">
       <cims:belongsToCategory rdf:resource="#Package_Domain"/>
