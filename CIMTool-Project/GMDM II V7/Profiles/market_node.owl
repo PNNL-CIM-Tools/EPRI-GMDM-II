@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!-- 
+
+	Copyright 2025 UCAIug
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	https://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	
+	See the License for the specific language governing permissions and
+	limitations under the License.
+
+-->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns="http://www.ucaiug.org/gmdm_market_node#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:msg="http://langdale.com.au/2005/Message#"
+    xmlns:uml="http://langdale.com.au/2005/UML#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xml:base="http://www.ucaiug.org/gmdm_market_node" > 
+  <rdf:Description rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673b">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673c"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM101#IdentifiedObject.description"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673c">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>description</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673d">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673e"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM101#IdentifiedObject.name"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673e">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#attribute"/>
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>name</rdfs:label>
+    <owl:equivalentClass rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X9c0cd68Xa3X197cdd63fd9Xa3X-7fca">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:allValuesFrom rdf:nodeID="X63X9c0cd68Xa3X197cdd63fd9Xa3X-7fcb"/>
+    <owl:onProperty rdf:resource="http://iec.ch/TC57/CIM101#IndividualPnode.ConnectivityNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="X63X9c0cd68Xa3X197cdd63fd9Xa3X-7fcb">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label>ConnectivityNode</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#ConnectivityNode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Profile</rdfs:label>
+    <owl:imports rdf:resource="http://iec.ch/TC57/CIM101"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#ConnectivityNode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#description"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#ConnectivityNode"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IdentifiedObject">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673b"/>
+    <rdfs:subClassOf rdf:nodeID="Xd2X7e3ebb0dXa3X197d678001fXa3X-673d"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#IdentifiedObject"/>
+    <rdfs:subClassOf rdf:resource="#Identity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Identity">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#Identity"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#IndividualPnode">
+    <uml:hasStereotype rdf:resource="http://langdale.com.au/2005/UML#concrete"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:nodeID="X63X9c0cd68Xa3X197cdd63fd9Xa3X-7fca"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#IndividualPnode"/>
+    <rdfs:subClassOf rdf:resource="#Pnode"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="#Pnode">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="http://iec.ch/TC57/CIM101#Pnode"/>
+    <rdfs:subClassOf rdf:resource="#IdentifiedObject"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#Thing">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+</rdf:RDF>
