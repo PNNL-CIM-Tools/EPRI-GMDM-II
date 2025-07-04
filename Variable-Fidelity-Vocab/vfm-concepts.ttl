@@ -1,0 +1,54 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vfm: <http://gridappsd.org/variable-fidelity#> .
+
+# VFM Concept Scheme
+<http://gridappsd.org/variable-fidelity/concepts> a skos:ConceptScheme ;
+    dcterms:title "Variable Fidelity Modeling Concepts" ;
+    dcterms:description "Conceptual classification for variable fidelity grid model data" ;
+    dcterms:creator "UCAiUG CIM Users Group" ;
+    vfm:supportsFidelityLevels vfm:HighFidelity, vfm:MediumFidelity, vfm:LowFidelity .
+
+# Model Type Concepts
+vfm:ConnectivityModel a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "Connectivity Model" ;
+    skos:definition "Model data describing equipment connectivity and topology" ;
+    skos:topConceptOf <http://gridappsd.org/variable-fidelity/concepts> ;
+    vfm:requiredForFidelity vfm:LowFidelity, vfm:MediumFidelity, vfm:HighFidelity .
+
+vfm:GeographicalModel a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "Geographical Model" ;
+    skos:definition "Model data describing geographical location and spatial relationships" ;
+    skos:topConceptOf <http://gridappsd.org/variable-fidelity/concepts> ;
+    vfm:requiredForFidelity vfm:MediumFidelity, vfm:HighFidelity .
+
+vfm:ElectricalModel a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "Electrical Model" ;
+    skos:definition "Model data describing electrical characteristics and parameters" ;
+    skos:topConceptOf <http://gridappsd.org/variable-fidelity/concepts> ;
+    vfm:requiredForFidelity vfm:HighFidelity .
+
+# Export Control Concepts
+vfm:ExportControlModel a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "Export Control Model" ;
+    skos:definition "Rules and policies governing data export based on fidelity requirements" ;
+    skos:topConceptOf <http://gridappsd.org/variable-fidelity/concepts> .
+
+# Fidelity-specific subconcepts
+vfm:HighFidelityTopology a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "High Fidelity Topology" ;
+    skos:broader vfm:ConnectivityModel ;
+    skos:definition "Detailed connectivity model with all switching devices and connection points" .
+
+vfm:SimplifiedTopology a skos:Concept ;
+    skos:inScheme <http://gridappsd.org/variable-fidelity/concepts> ;
+    skos:prefLabel "Simplified Topology" ;
+    skos:broader vfm:ConnectivityModel ;
+    skos:definition "Simplified connectivity model focusing on major equipment only" .

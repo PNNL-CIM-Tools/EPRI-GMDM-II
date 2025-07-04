@@ -1,0 +1,44 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix vfm: <http://gridappsd.org/variable-fidelity/vocab#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+
+# Connectivity Profile with Export Controls
+<http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced> a dcat:Dataset, vfm:FormativeProfile ;
+    dcterms:title "VFM Connectivity Unbalanced Profile" ;
+    dcterms:description "Core connectivity model for unbalanced power system analysis with export controls" ;
+    dcterms:identifier "vfm-connectivity-unbalanced-v1.0" ;
+    dcat:keyword "connectivity", "topology", "unbalanced", "vfm" ;
+    dcterms:conformsTo <http://iec.ch/TC57/ns/CIM/prof-cim#> ;
+    vfm:profileType vfm:FormativeProfile ;
+    vfm:definitionStatus vfm:Complete ;
+    vfm:fidelityLevel vfm:HighFidelity ;
+    vfm:hasExportPolicy vfm:BreakerExportPolicy, vfm:TerminalExportPolicy, vfm:ConnectivityNodeExportPolicy ;
+    dcterms:created "2024-01-15"^^xsd:date .
+
+# Geographical Location Profile
+<http://cim.ucaiug.io/gmdm/profiles/geographical_location> a dcat:Dataset, vfm:AdditiveProfile ;
+    dcterms:title "VFM Geographical Location Profile" ;
+    dcterms:description "Geographic location and spatial information with variable fidelity support" ;
+    dcterms:identifier "vfm-geographical-location-v1.0" ;
+    dcat:keyword "geography", "location", "spatial", "vfm" ;
+    dcterms:conformsTo <http://iec.ch/TC57/ns/CIM/prof-cim#> ;
+    vfm:profileType vfm:AdditiveProfile ;
+    vfm:extendsProfile <http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced> ;
+    vfm:fidelityLevel vfm:MediumFidelity ;
+    dcterms:created "2024-01-15"^^xsd:date .
+
+# Electrical Unbalanced Profile with Enhanced Export Controls
+<http://cim.ucaiug.io/gmdm/profiles/electrical/unbalanced> a dcat:Dataset, vfm:AdditiveProfile ;
+    dcterms:title "VFM Electrical Unbalanced Profile" ;
+    dcterms:description "Electrical parameters for unbalanced analysis with fidelity controls" ;
+    dcterms:identifier "vfm-electrical-unbalanced-v1.0" ;
+    dcat:keyword "electrical", "impedance", "unbalanced", "vfm" ;
+    dcterms:conformsTo <http://iec.ch/TC57/ns/CIM/prof-cim#> ;
+    vfm:profileType vfm:AdditiveProfile ;
+    vfm:extendsProfile <http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced> ;
+    vfm:fidelityLevel vfm:HighFidelity ;
+    vfm:criticality vfm:Critical ;
+    dcterms:created "2024-01-15"^^xsd:date .

@@ -1,0 +1,288 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix vfm: <http://gridappsd.org/variable-fidelity/vocab#> .
+@prefix ex: <http://gridappsd.org/export#> .
+
+# Ontology Declaration
+<http://gridappsd.org/variable-fidelity/vocab#> a owl:Ontology ;
+    dcterms:title "Variable Fidelity Modeling Vocabulary" ;
+    dcterms:description "Vocabulary for managing multi-profile grid model definitions with export control" ;
+    dcterms:creator "GridAPPS-D Development Team" ;
+    dcterms:created "2025-07-03"^^xsd:date ;
+    dcterms:modified "2025-07-03"^^xsd:date ;
+    owl:versionInfo "0.0.1" ;
+    dcterms:license <https://github.com/PNNL-CIM-Tools/CIM-Graph/blob/main/LICENSE> ;
+    owl:imports <http://www.w3.org/ns/shacl#> .
+
+# =============================================================================
+# DEFINITION MANAGEMENT VOCABULARY
+# =============================================================================
+
+# Definition Types
+vfm:DefinitionType a rdfs:Class ;
+    rdfs:label "Definition Type" ;
+    rdfs:comment "Classification of how data defines or extends equipment information" ;
+    rdfs:subClassOf dcterms:Type .
+
+vfm:FormativeDefinition a vfm:DefinitionType ;
+    rdfs:label "Formative Definition" ;
+    rdfs:comment "Core definition that establishes the fundamental existence and identity of an equipment" ;
+    skos:definition "A definition containing essential properties required for the equipment to exist in the model" .
+
+vfm:AdditiveDefinition a vfm:DefinitionType ;
+    rdfs:label "Additive Definition" ;
+    rdfs:comment "Supplementary definition that adds characteristics to an existing equipment" ;
+    skos:definition "A definition that extends or enriches the information about equipment already established by a formative definition" .
+
+# Definition Status
+vfm:DefinitionStatus a rdfs:Class ;
+    rdfs:label "Definition Status" ;
+    rdfs:comment "Status of a definition's completeness and validation" .
+
+vfm:Complete a vfm:DefinitionStatus ;
+    rdfs:label "Complete" ;
+    rdfs:comment "Definition contains all required properties for its profile" .
+
+vfm:Partial a vfm:DefinitionStatus ;
+    rdfs:label "Partial" ;
+    rdfs:comment "Definition is incomplete but valid" .
+
+vfm:Draft a vfm:DefinitionStatus ;
+    rdfs:label "Draft" ;
+    rdfs:comment "Definition is under development" .
+
+# Data Quality Levels
+vfm:DataQuality a rdfs:Class ;
+    rdfs:label "Data Quality" ;
+    rdfs:comment "Quality assessment of the data" .
+
+vfm:Validated a vfm:DataQuality ;
+    rdfs:label "Validated" ;
+    rdfs:comment "Data has been validated against business rules" .
+
+vfm:Measured a vfm:DataQuality ;
+    rdfs:label "Measured" ;
+    rdfs:comment "Data obtained from direct measurement" .
+
+vfm:Calculated a vfm:DataQuality ;
+    rdfs:label "Calculated" ;
+    rdfs:comment "Data derived through calculation" .
+
+vfm:Estimated a vfm:DataQuality ;
+    rdfs:label "Estimated" ;
+    rdfs:comment "Data is an estimate or approximation" .
+
+vfm:Surveyed a vfm:DataQuality ;
+    rdfs:label "Surveyed" ;
+    rdfs:comment "Data obtained from field survey" .
+
+# Fidelity Levels
+vfm:FidelityLevel a rdfs:Class ;
+    rdfs:label "Fidelity Level" ;
+    rdfs:comment "Level of detail and accuracy in the model representation" .
+
+vfm:HighFidelity a vfm:FidelityLevel ;
+    rdfs:label "High Fidelity" ;
+    rdfs:comment "Detailed, accurate representation suitable for precise analysis" .
+
+vfm:MediumFidelity a vfm:FidelityLevel ;
+    rdfs:label "Medium Fidelity" ;
+    rdfs:comment "Balanced representation suitable for most analysis purposes" .
+
+vfm:LowFidelity a vfm:FidelityLevel ;
+    rdfs:label "Low Fidelity" ;
+    rdfs:comment "Simplified representation suitable for overview analysis" .
+
+# Criticality Levels
+vfm:Criticality a rdfs:Class ;
+    rdfs:label "Criticality" ;
+    rdfs:comment "Importance level of the data for system operations" .
+
+vfm:Critical a vfm:Criticality ;
+    rdfs:label "Critical" ;
+    rdfs:comment "Essential for safe system operation" .
+
+vfm:Essential a vfm:Criticality ;
+    rdfs:label "Essential" ;
+    rdfs:comment "Required for basic system modeling" .
+
+vfm:Important a vfm:Criticality ;
+    rdfs:label "Important" ;
+    rdfs:comment "Significant for accurate analysis" .
+
+vfm:Optional a vfm:Criticality ;
+    rdfs:label "Optional" ;
+    rdfs:comment "Useful but not required" .
+
+# =============================================================================
+# EXPORT CONTROL VOCABULARY
+# =============================================================================
+
+# Export Control Classes
+vfm:ExportPolicy a rdfs:Class ;
+    rdfs:label "Export Policy" ;
+    rdfs:comment "Policy defining what data can be exported under specific conditions" ;
+    rdfs:subClassOf sh:NodeShape .
+
+vfm:ConditionalExport a rdfs:Class ;
+    rdfs:label "Conditional Export" ;
+    rdfs:comment "Export rule that depends on meeting specific conditions" .
+
+vfm:ExportCondition a rdfs:Class ;
+    rdfs:label "Export Condition" ;
+    rdfs:comment "Condition that must be met for export to be allowed" .
+
+# Export Control Properties
+ex:exportAllowed a rdf:Property ;
+    rdfs:label "export allowed" ;
+    rdfs:comment "Indicates whether this property can be exported" ;
+    rdfs:domain sh:PropertyShape ;
+    rdfs:range xsd:boolean .
+
+ex:traverseAllowed a rdf:Property ;
+    rdfs:label "traverse allowed" ;
+    rdfs:comment "Indicates whether traversal through this property is allowed" ;
+    rdfs:domain sh:PropertyShape ;
+    rdfs:range xsd:boolean .
+
+ex:maxTraversalDepth a rdf:Property ;
+    rdfs:label "maximum traversal depth" ;
+    rdfs:comment "Maximum depth for traversal through this property" ;
+    rdfs:domain sh:PropertyShape ;
+    rdfs:range xsd:nonNegativeInteger .
+
+ex:conditionalExport a rdf:Property ;
+    rdfs:label "conditional export" ;
+    rdfs:comment "Defines conditional export rules" ;
+    rdfs:domain sh:NodeShape ;
+    rdfs:range vfm:ConditionalExport .
+
+ex:condition a rdf:Property ;
+    rdfs:label "condition" ;
+    rdfs:comment "The condition that must be met" ;
+    rdfs:domain vfm:ConditionalExport ;
+    rdfs:range vfm:ExportCondition .
+
+ex:conditionPath a rdf:Property ;
+    rdfs:label "condition path" ;
+    rdfs:comment "Property path to evaluate for the condition" ;
+    rdfs:domain vfm:ConditionalExport ;
+    rdfs:range rdf:Property .
+
+ex:conditionType a rdf:Property ;
+    rdfs:label "condition type" ;
+    rdfs:comment "Type of condition to evaluate" ;
+    rdfs:domain vfm:ConditionalExport ;
+    rdfs:range rdfs:Resource .
+
+ex:relatedPath a rdf:Property ;
+    rdfs:label "related path" ;
+    rdfs:comment "Additional property path for complex conditions" ;
+    rdfs:domain vfm:ConditionalExport ;
+    rdfs:range rdf:Property .
+
+ex:allowedTypes a rdf:Property ;
+    rdfs:label "allowed types" ;
+    rdfs:comment "List of allowed RDF types for the condition" ;
+    rdfs:domain vfm:ConditionalExport ;
+    rdfs:range rdf:List .
+
+ex:fidelityLevel a rdf:Property ;
+    rdfs:label "fidelity level" ;
+    rdfs:comment "Required fidelity level for export" ;
+    rdfs:domain sh:PropertyShape ;
+    rdfs:range vfm:FidelityLevel .
+
+# Condition Types
+ex:hasAnyRelatedOfType a vfm:ExportCondition ;
+    rdfs:label "Has Any Related of Type" ;
+    rdfs:comment "Condition met if any related object is of specified type" .
+
+ex:hasAllRelatedOfType a vfm:ExportCondition ;
+    rdfs:label "Has All Related of Type" ;
+    rdfs:comment "Condition met if all related objects are of specified type" .
+
+ex:hasCountGreaterThan a vfm:ExportCondition ;
+    rdfs:label "Has Count Greater Than" ;
+    rdfs:comment "Condition met if count of related objects exceeds threshold" .
+
+# Standard Definition Properties
+vfm:definitionStatus a rdf:Property ;
+    rdfs:label "definition status" ;
+    rdfs:comment "Status of this definition" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range vfm:DefinitionStatus .
+
+vfm:dataQuality a rdf:Property ;
+    rdfs:label "data quality" ;
+    rdfs:comment "Quality level of the data" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range vfm:DataQuality .
+
+vfm:criticality a rdf:Property ;
+    rdfs:label "criticality" ;
+    rdfs:comment "Criticality level of this data" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range vfm:Criticality .
+
+vfm:fidelityLevel a rdf:Property ;
+    rdfs:label "fidelity level" ;
+    rdfs:comment "Fidelity level of this model representation" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range vfm:FidelityLevel .
+
+vfm:systemComponent a rdf:Property ;
+    rdfs:label "system component" ;
+    rdfs:comment "The system component responsible for this data" ;
+    rdfs:domain foaf:Agent ;
+    rdfs:range rdfs:Literal .
+
+vfm:lastValidated a rdf:Property ;
+    rdfs:label "last validated" ;
+    rdfs:comment "Date when this data was last validated" ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:dateTime .
+
+# Profile Relationships
+vfm:ProfileRelation a rdfs:Class ;
+    rdfs:label "Profile Relation" ;
+    rdfs:comment "Describes relationship between profiles" .
+
+vfm:extendsProfile a rdf:Property ;
+    rdfs:label "extends profile" ;
+    rdfs:comment "This profile extends another profile" ;
+    rdfs:domain vfm:ProfileRelation ;
+    rdfs:range rdfs:Resource .
+
+vfm:relationshipType a rdf:Property ;
+    rdfs:label "relationship type" ;
+    rdfs:comment "Type of relationship between profiles" ;
+    rdfs:domain vfm:ProfileRelation ;
+    rdfs:range rdfs:Resource .
+
+# Relationship Types
+vfm:GeographicalExtension a rdfs:Resource ;
+    rdfs:label "Geographical Extension" ;
+    rdfs:comment "Adds geographical/location information" .
+
+vfm:ElectricalExtension a rdfs:Resource ;
+    rdfs:label "Electrical Extension" ;
+    rdfs:comment "Adds electrical characteristics" .
+
+vfm:OperationalExtension a rdfs:Resource ;
+    rdfs:label "Operational Extension" ;
+    rdfs:comment "Adds operational status information" .
+
+# Profile Types
+vfm:FormativeProfile a rdfs:Class ;
+    rdfs:label "Formative Profile" ;
+    rdfs:comment "Profile that provides formative definitions" .
+
+vfm:AdditiveProfile a rdfs:Class ;
+    rdfs:label "Additive Profile" ;
+    rdfs:comment "Profile that provides additive definitions" .
