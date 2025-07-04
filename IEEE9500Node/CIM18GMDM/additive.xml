@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dcterms="http://purl.org/dc/terms/"
+         xmlns:cim="http://iec.ch/TC57/CIM101#"
+         xmlns:vfm="http://gridappsd.org/variable-fidelity#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    
+    
+    <!-- Mini Version -->
+    <cim:ACLineSegment rdf:about="urn:uuid:AAA40048-0566-45CD-A3F1-71D52B3E9BD1">
+        <cim:ACLineSegment.PerLengthImpedance rdf:resource="urn:uuid:B4FF5879-ABE6-4CF2-92D7-38987F9269B6"/>
+        <cim:Conductor.length>42.081798</cim:Conductor.length>
+        <!-- Definition Metadata -->
+        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#AdditiveDefinition"/>
+        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/electrical/unbalanced"/>
+    </cim:ACLineSegment>
+    
+    
+    <!-- Full version with complete metadata -->
+    
+    <cim:ACLineSegment rdf:about="urn:uuid:000DBDC9-F896-4332-B4A0-0CB54C939C42">
+        <!-- Electrical properties -->
+        <cim:ACLineSegment.PerLengthImpedance rdf:resource="urn:uuid:12994F42-5878-4DE6-AAB4-81245B1C0899"/>
+        <cim:Conductor.length>148.62445</cim:Conductor.length>
+        
+        <!-- VFM Definition Metadata -->
+        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#AdditiveDefinition"/>
+        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/electrical/unbalanced"/>
+        <dcterms:subject rdf:resource="http://cim.ucaiug.io/vfm/concepts/ElectricalModel"/>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-01-15T12:45:00Z</dcterms:created>
+        <dcterms:creator>
+            <foaf:Agent>
+                <foaf:name>Engineering Analysis System</foaf:name>
+                <vfm:systemComponent>Electrical Parameter Processor</vfm:systemComponent>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:source>Equipment Testing Database</dcterms:source>
+        <dcterms:requires rdf:resource="urn:uuid:000DBDC9-F896-4332-B4A0-0CB54C939C42"/>
+        <dcterms:relation>
+            <!-- Metadata for extensions as relevant -->
+            <vfm:ProfileRelation>
+                <vfm:extendsProfile rdf:resource="http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced"/>
+                <vfm:relationshipType rdf:resource="http://cim.ucaiug.io/gmdm/vocab#ElectricalExtension"/>
+            </vfm:ProfileRelation>
+        </dcterms:relation>
+        <vfm:definitionStatus rdf:resource="http://gridappsd.org/variable-fidelity#Complete"/>
+        <vfm:dataQuality rdf:resource="http://gridappsd.org/variable-fidelity#Measured"/>
+        <vfm:criticality rdf:resource="http://gridappsd.org/variable-fidelity#Critical"/>
+        <vfm:fidelityLevel rdf:resource="http://gridappsd.org/variable-fidelity#HighFidelity"/>
+        <vfm:lastValidated rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-01-10T09:00:00Z</vfm:lastValidated>
+    </cim:ACLineSegment>
+    
+</rdf:RDF>

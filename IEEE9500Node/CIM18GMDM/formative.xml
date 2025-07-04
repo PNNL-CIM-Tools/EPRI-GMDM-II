@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:dcterms="http://purl.org/dc/terms/"
+         xmlns:cim="http://iec.ch/TC57/CIM100#"
+         xmlns:vfm="http://gridappsd.org/variable-fidelity#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/">
+    
+    <!-- Mini Version -->
+    <cim:ACLineSegment rdf:about="urn:uuid:AAA40048-0566-45CD-A3F1-71D52B3E9BD1">
+        <cim:ConductingEquipment.BaseVoltage rdf:resource="urn:uuid:A1A90D64-224D-4E25-8BEE-FA7A518CA4A3"/>
+        <cim:Equipment.EquipmentContainer rdf:resource="urn:uuid:F7AA0E50-429C-4F62-8786-888AD96A42B4"/>
+        <cim:Identity.identifier>AAA40048-0566-45CD-A3F1-71D52B3E9BD1</cim:Identity.identifier>
+        <!-- Definition Metadata -->
+        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#FormativeDefinition"/>
+        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced"/>
+    </cim:ACLineSegment>
+    
+    
+    <!-- Full Version with VFM Metadata -->
+    <cim:ACLineSegment rdf:about="urn:uuid:000DBDC9-F896-4332-B4A0-0CB54C939C42">
+        <!-- Core connectivity properties -->
+        <cim:ConductingEquipment.BaseVoltage rdf:resource="urn:uuid:A1A90D64-224D-4E25-8BEE-FA7A518CA4A3"/>
+        <cim:Equipment.EquipmentContainer rdf:resource="urn:uuid:F7AA0E50-429C-4F62-8786-888AD96A42B4"/>
+        <cim:IdentifiedObject.mRID>000DBDC9-F896-4332-B4A0-0CB54C939C42</cim:IdentifiedObject.mRID>
+        <cim:Identity.identifier>000DBDC9-F896-4332-B4A0-0CB54C939C42</cim:Identity.identifier>
+        
+        <!-- VFM Definition Metadata -->
+        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#FormativeDefinition"/>
+        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced"/>
+        <dcterms:subject rdf:resource="http://cim.ucaiug.io/vfm/concepts/ConnectivityModel"/>
+        <dcterms:created rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2024-01-15T10:30:00Z</dcterms:created>
+        <dcterms:creator>
+            <!-- Replace with cim:ModelAuthority -->
+            <foaf:Agent>
+                <foaf:name>Grid Model Management System</foaf:name>
+                <vfm:systemComponent>Connectivity Processor</vfm:systemComponent>
+            </foaf:Agent>
+        </dcterms:creator>
+        <dcterms:source>Network Topology Database</dcterms:source>
+        <dcterms:isRequiredBy rdf:resource="http://cim.ucaiug.io/vfm/requirements/PowerFlowAnalysis"/>
+        <vfm:definitionStatus rdf:resource="http://gridappsd.org/variable-fidelity#Complete"/>
+        <vfm:dataQuality rdf:resource="http://gridappsd.org/variable-fidelity#Validated"/>
+        <vfm:criticality rdf:resource="http://gridappsd.org/variable-fidelity#Essential"/>
+        <vfm:fidelityLevel rdf:resource="http://gridappsd.org/variable-fidelity#HighFidelity"/>
+    </cim:ACLineSegment>
+    
+</rdf:RDF>
