@@ -11,9 +11,9 @@
     <cim:ACLineSegment rdf:about="urn:uuid:AAA40048-0566-45CD-A3F1-71D52B3E9BD1">
         <cim:ACLineSegment.PerLengthImpedance rdf:resource="urn:uuid:B4FF5879-ABE6-4CF2-92D7-38987F9269B6"/>
         <cim:Conductor.length>42.081798</cim:Conductor.length>
+        <cim:Identity.identifier>AAA40048-0566-45CD-A3F1-71D52B3E9BD1</cim:Identity.identifier>
         <!-- Definition Metadata -->
-        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#AdditiveDefinition"/>
-        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/electrical/unbalanced"/>
+        <dcterms:type rdf:resource="http://ucaiug.io/gmdm#AdditiveDefinition"/>
     </cim:ACLineSegment>
     
     

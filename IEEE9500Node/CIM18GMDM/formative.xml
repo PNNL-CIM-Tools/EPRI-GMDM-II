@@ -12,8 +12,7 @@
         <cim:Equipment.EquipmentContainer rdf:resource="urn:uuid:F7AA0E50-429C-4F62-8786-888AD96A42B4"/>
         <cim:Identity.identifier>AAA40048-0566-45CD-A3F1-71D52B3E9BD1</cim:Identity.identifier>
         <!-- Definition Metadata -->
-        <dcterms:type rdf:resource="http://gridappsd.org/variable-fidelity#FormativeDefinition"/>
-        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/connectivity/unbalanced"/>
+        <dcterms:type rdf:resource="http://ucaiug.io/gmdm#FormativeDefinition"/>
     </cim:ACLineSegment>
     
     
