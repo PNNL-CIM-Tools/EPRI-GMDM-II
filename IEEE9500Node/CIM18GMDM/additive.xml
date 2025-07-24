@@ -14,6 +14,7 @@
         <cim:Identity.identifier>AAA40048-0566-45CD-A3F1-71D52B3E9BD1</cim:Identity.identifier>
         <!-- Definition Metadata -->
         <dcterms:type rdf:resource="http://ucaiug.io/gmdm#AdditiveDefinition"/>
+        <dcterms:conformsTo rdf:resource="http://cim.ucaiug.io/gmdm/profiles/electrical/unbalanced"/>
     </cim:ACLineSegment>
     
     
