@@ -61,9 +61,9 @@ setkvbase m1069-MT1     kVll=0.480
 !Buscoords  BusCoords.dss
 LatLongCoords LatLongCoords.dss
 
-New Energymeter.m1 Element=LINE.HVMV69S1B2_SW Terminal=1
-New Energymeter.m2 Element=LINE.HVMV69S2B2_SW Terminal=1
-New Energymeter.m3 Element=LINE.HVMV69S3B2_SW Terminal=1
+New Energymeter.m1 Element=LINE.hvmv11s1b2_SW Terminal=1
+New Energymeter.m2 Element=LINE.hvmv11s2b2_SW Terminal=1
+New Energymeter.m3 Element=LINE.hvmv11s3b2_SW Terminal=1
 
 Set Maxiterations=30     ! Sometimes the solution takes more than the default 15 iterations
 Set MaxControlIter=100
@@ -112,4 +112,10 @@ set MarkTransformers=true TransmarkerCode=14
 
 Plot daisy Power Max=1000 dots=n labels=n 1ph=3
 
-export cim100
+uuids file=IEEE9500bal_EXP_UUIDS.dat
+
+export cim100 substation=subname geo=region subgeo=subregion file=ieee9500GMDM_CIM100.xml 
+
+export cim100fragments substation=subname geo=region subgeo=subregion file=ieee9500
+
+export UUIDS IEEE9500bal_EXP_UUIDS.dat

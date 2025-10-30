@@ -3,7 +3,7 @@
 New Reactor.HVMV_Sub_HSB  bus1=sourcebus  bus2=HVMV115_HSB1  r=0  x=(1.051 0.88 0.001 3 * - - 115 12.47 / sqr *) normamps=400  emergamps=400
 
 ! HV/MV Substation connected grounded-wye / delta
-New Transformer.HVMV115_69Sub  phases=3  windings=2  buses=(HVMV115_HSB2, regxfmr_HVMV69sub1_LSB1)  
+New Transformer.HVMV115_69Sub  phases=3  windings=2  buses=(HVMV115_HSB2, regxfmr_HVMV69s1_LSB1)  
 ~ conns=(wye delta)  
 ~ kvs=(115, 69)  kvas=(75000, 75000)  
 ~ xhl=7.05 
@@ -11,7 +11,7 @@ New Transformer.HVMV115_69Sub  phases=3  windings=2  buses=(HVMV115_HSB2, regxfm
 ~ wdg=2  %r=0.67
 
 ! HV/MV Substation connected Delta/grounded-wye
-New Transformer.HVMV69_11Sub1  phases=3  windings=2  buses=(HVMV69sub1_HSB, regxfmr_HVMV11sub1_LSB)  
+New Transformer.HVMV69_11s1  phases=3  windings=2  buses=(HVMV69s1_HSB, regxfmr_HVMV11s1_LSB)  
 ~ conns=(delta wye)  
 ~ kvs=(69, 12.47)  kvas=(20000, 20000)  
 ~ xhl=7.94
@@ -23,9 +23,9 @@ New XfmrCode.FEEDER_REG phases=1 windings=2 kvs=(7.2, 7.2)  kvas=(7500, 7500) xh
 
 ! Three single-phase voltage regulators on feeder
 ! Define transformer part as low-impedance 2-winding Y-Y transformer
-New Transformer.FEEDER_REG1A  buses=(regxfmr_HVMV11sub1_LSB.1,  HVMV11sub1_LSB.1) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
-New Transformer.FEEDER_REG1B  buses=(regxfmr_HVMV11sub1_LSB.2,  HVMV11sub1_LSB.2) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
-New Transformer.FEEDER_REG1C  buses=(regxfmr_HVMV11sub1_LSB.3,  HVMV11sub1_LSB.3) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
+New Transformer.FEEDER_REG1A  buses=(regxfmr_HVMV11s1_LSB.1,  HVMV11s1_LSB.1) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
+New Transformer.FEEDER_REG1B  buses=(regxfmr_HVMV11s1_LSB.2,  HVMV11s1_LSB.2) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
+New Transformer.FEEDER_REG1C  buses=(regxfmr_HVMV11s1_LSB.3,  HVMV11s1_LSB.3) XfmrCode = FEEDER_REG  bank = FEEDER1_REG1
 
 ! Voltage regulator controls
 New RegControl.FEEDER_REG1A transformer=FEEDER_REG1A  winding=2 vreg=123  ptratio=60 band=2 
@@ -52,7 +52,7 @@ New RegControl.FEEDER_REG2B transformer=FEEDER_REG2B  winding=2 vreg=123  ptrati
 New RegControl.FEEDER_REG2C transformer=FEEDER_REG2C  winding=2 vreg=123  ptratio=60 band=2 
 
 ! HV/MV Substation connected Delta/grounded-wye
-New Transformer.HVMV69_11Sub3  phases=3  windings=2  buses=(HVMV69sub3_HSB, regxfmr_HVMV11sub3_LSB)  
+New Transformer.HVMV69_11s3  phases=3  windings=2  buses=(HVMV69s3_HSB, regxfmr_HVMV11s3_LSB)  
 ~ conns=(delta wye)  
 ~ kvs=(69, 12.47)  kvas=(20000, 20000)  
 ~ xhl=7.94 
@@ -61,9 +61,9 @@ New Transformer.HVMV69_11Sub3  phases=3  windings=2  buses=(HVMV69sub3_HSB, regx
 
 ! Three single-phase voltage regulators on feeder
 ! Define transformer part as low-impedance 2-winding Y-Y transformer
-New Transformer.FEEDER_REG3A buses=(regxfmr_HVMV11sub3_LSB.1,  HVMV11sub3_LSB.1)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
-New Transformer.FEEDER_REG3B buses=(regxfmr_HVMV11sub3_LSB.2,  HVMV11sub3_LSB.2)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
-New Transformer.FEEDER_REG3C buses=(regxfmr_HVMV11sub3_LSB.3,  HVMV11sub3_LSB.3)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
+New Transformer.FEEDER_REG3A buses=(regxfmr_HVMV11s3_LSB.1,  HVMV11s3_LSB.1)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
+New Transformer.FEEDER_REG3B buses=(regxfmr_HVMV11s3_LSB.2,  HVMV11s3_LSB.2)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
+New Transformer.FEEDER_REG3C buses=(regxfmr_HVMV11s3_LSB.3,  HVMV11s3_LSB.3)  XfmrCode = FEEDER_REG  bank = FEEDER3_REG3
 
 ! Voltage regulator controls
 New RegControl.FEEDER_REG3A transformer=FEEDER_REG3A  winding=2 vreg=123  ptratio=60 band=2 

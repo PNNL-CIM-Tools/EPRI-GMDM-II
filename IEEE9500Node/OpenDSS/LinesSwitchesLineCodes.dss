@@ -2,8 +2,7 @@
 ! Line code definitions given in Linecode.DSS
 
 ! New 69kv transmission path
-New Line.HVMV_Sub_connector  bus1=HVMV11sub1_LSB      bus2=HVMV_Sub1_48332     length=0.001       units=km r1=0.001 r0=0.001 x1=0.01 x0=0.01 c1=0 c0=0           
-New Line.LN5710794-3         bus1=HVMV_Sub1_48332     bus2=D5710794-3_INT      length=0.019436038 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR397_ACSR normamps=450 emergamps=600  
+New Line.HVMV_Sub_connector  bus1=HVMV11s1_LSB      bus2=D5710794-3_INT      switch=True r1=0.001 r0=0.001 x1=0.001 x0=0.001 C1=0 C0=0 length=0.001
 
 New Line.HVMV69S1S2-1        bus1=HVMV69S1S2_1        bus2=HVMV69S1S2_2        length=1.0        units=km Linecode=3ph-69kV_397_TREEWIRE normamps=450 emergamps=600  !New sub-transmission line
 New Line.HVMV69S1S2-2        bus1=HVMV69S1S2_2        bus2=HVMV69S1S2_3        length=0.75        units=km Linecode=3ph-69kV_397_TREEWIRE normamps=450 emergamps=600  !New sub-transmission line
@@ -24,12 +23,12 @@ New Line.LN5473414-1         bus1=M1209814            bus2=M1209811            l
 New Line.LN5714974-1         bus1=M1209811            bus2=M1209807            length=0.12260449  units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR397_ACSR normamps=450 emergamps=600
 New Line.LN5896798-1         bus1=M1209807            bus2=M1209805            length=0.044159942 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR397_ACSR normamps=450 emergamps=600
 New Line.LN5775442-1         bus1=M1209805            bus2=L2823592            length=0.10556016  units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600
-New Line.CAP_1A              bus1=L2823592.1          bus2=L2823592_CAP.1      length=0.001       units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0    Phases=1       
-New Line.CAP_1B              bus1=L2823592.2          bus2=L2823592_CAP.2      length=0.001       units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0    Phases=1       
-New Line.CAP_1C              bus1=L2823592.3          bus2=L2823592_CAP.3      length=0.001       units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0    Phases=1       
-New Line.LN5513564-2         bus1=L2823592_CAP        bus2=R20185              length=0.001       units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0      
-New Line.LN5513564-1         bus1=R20185              bus2=D5513564-1_INT      length=0.021280456 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
-New Line.LN6321409-1         bus1=E192201             bus2=M1209800            length=0.055682141 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
+!New Line.CAP_1A              bus1=L2823592.1          bus2=L2823592_CAP.1      length=0.001       units=km Linecode=3PH_H-397_ACSR   Phases=1       
+!New Line.CAP_1B              bus1=L2823592.2          bus2=L2823592_CAP.2      length=0.001       units=km Linecode=3PH_H-397_ACSR Phases=1       
+!New Line.CAP_1C              bus1=L2823592.3          bus2=L2823592_CAP.3      length=0.001       units=km Linecode=3PH_H-397_ACSR  Phases=1       
+!New Line.LN5513564-2         bus1=L2823592            bus2=R20185              length=0.001       units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0      
+New Line.LN5513564-1         bus1=L2823592             bus2=D5513564-1_INT      length=0.021280456 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
+New Line.LN6321409-1         bus1=D5513564-1_INT       bus2=M1209800            length=0.055682141 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN5654466-1         bus1=M1209800            bus2=M1209797            length=0.075404767 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600
 New Line.LN6291242-1         bus1=M1209797            bus2=M1209791            length=0.066599759 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN5654472-1         bus1=M1209791            bus2=M1209790            length=0.055242928 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
@@ -56,9 +55,9 @@ New Line.LN5508630-1         bus1=M1166376            bus2=L2842384            l
 New Line.LN5805762-1         bus1=L2842384            bus2=M1149236            length=0.067772686 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN6018336-1         bus1=M1149236            bus2=M1149235            length=0.041559119 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN5563942-4         bus1=M1149235            bus2=D5563942-4_INT      length=0.031133341 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
-!New Line.CAP_2A              bus1=Q16483.1            bus2=Q16483_CAP.1        length=0.001        units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0           Phases=1
-!New Line.CAP_2B              bus1=Q16483.2            bus2=Q16483_CAP.2        length=0.001        units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0           Phases=1
-!New Line.CAP_2C              bus1=Q16483.3            bus2=Q16483_CAP.3        length=0.001        units=km r1=1.0        r0=1.0  x1=1.0      x0=1.0      c1=0     c0=0           Phases=1
+!New Line.CAP_2A              bus1=Q16483.1            bus2=Q16483_CAP.1        length=0.001        units=km Linecode=3PH_H-397_ACSR     Phases=1
+!New Line.CAP_2B              bus1=Q16483.2            bus2=Q16483_CAP.2        length=0.001        units=km Linecode=3PH_H-397_ACSR  Phases=1
+!New Line.CAP_2C              bus1=Q16483.3            bus2=Q16483_CAP.3        length=0.001        units=km Linecode=3PH_H-397_ACSR   Phases=1
 New Line.LN5563942-5         bus1=D5563942-4_INT      bus2=R42247              length=0.005259517  units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN5563942-3         bus1=R42247              bus2=M1149233            length=0.039748412 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
 New Line.LN5896833-1         bus1=M1149233            bus2=L3048965            length=0.097395629 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 
@@ -86,6 +85,7 @@ New Line.LN6379462-3         bus1=L2763153            bus2=M1047293            l
 New Line.LN6379462-2         bus1=L3139121            bus2=L2763153            length=0.075011137 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         
 New Line.LN6379462-1         bus1=M1047299            bus2=L3139121            length=0.044989749 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         
 New Line.LN5804836-1         bus1=M1047300            bus2=M1047299            length=0.062852147 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         
+New Line.LN_SUB2_CONN        bus1=E1047300            bus2=M1047300            length=0.000010000 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !New substation connector object         
 New Line.LN5774497-1         bus1=L3027116            bus2=M1047300            length=0.068887038 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         
 New Line.LN5865272-1         bus1=M1047303            bus2=L3027116            length=0.072205824 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         
 New Line.LN6380847-1         bus1=M1047303            bus2=L3254238            length=0.099313729 units=km Linecode=3PH_H-397_ACSR397_ACSR397_ACSR2/0_ACSR normamps=450 emergamps=600 !Upgraded from 3PH_H-4_ACSR4_ACSR4_ACSR4_ACSR normamps=90 emergamps=130         

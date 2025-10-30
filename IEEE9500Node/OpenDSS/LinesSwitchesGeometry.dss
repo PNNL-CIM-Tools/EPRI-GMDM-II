@@ -2,8 +2,8 @@
 ! Line code definitions given in Geometry.DSS
 
 ! New 69kv transmission path
-New Line.HVMV_Sub_connector  bus1=HVMV11sub1_LSB      bus2=HVMV_Sub1_48332     length=0.001       units=km r1=0.001 r0=0.001 x1=0.01 x0=0.01 c1=0 c0=0           
-New Line.LN5710794-3         bus1=HVMV_Sub1_48332     bus2=D5710794-3_INT      length=0.019436038 units=km Geometry=3PH_H-397_ACSR397_ACSR397_ACSR397_ACSR normamps=450 emergamps=600  
+New Line.HVMV_Sub_connector  bus1=HVMV11s1_LSB      bus2=HVMV_s1_48332     length=0.001       units=km r1=0.001 r0=0.001 x1=0.01 x0=0.01 c1=0 c0=0           
+New Line.LN5710794-3         bus1=HVMV_s1_48332     bus2=D5710794-3_INT      length=0.019436038 units=km Geometry=3PH_H-397_ACSR397_ACSR397_ACSR397_ACSR normamps=450 emergamps=600  
 
 New Line.HVMV69S1S2-1        bus1=HVMV69S1S2_1        bus2=HVMV69S1S2_2        length=1.0        units=km Geometry=3ph-69kV_397_TREEWIRE normamps=450 emergamps=600  !New sub-transmission line
 New Line.HVMV69S1S2-2        bus1=HVMV69S1S2_2        bus2=HVMV69S1S2_3        length=0.75        units=km Geometry=3ph-69kV_397_TREEWIRE normamps=450 emergamps=600  !New sub-transmission line
